@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/carlos/catkin_ws/src/surf_vision/build/devel/setup.sh

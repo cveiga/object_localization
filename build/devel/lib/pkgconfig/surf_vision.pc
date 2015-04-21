@@ -1,0 +1,8 @@
+prefix=/home/carlos/catkin_ws/src/surf_vision/build/devel
+
+Name: surf_vision
+Description: Description of surf_vision
+Version: 0.0.1
+Cflags: -I/home/carlos/catkin_ws/src/surf_vision/include
+Libs: -L/home/carlos/catkin_ws/src/surf_vision/build/devel/lib 
+Requires: cv_bridge image_transport roscpp sensor_msgs std_msgs
