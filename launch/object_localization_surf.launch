@@ -1,0 +1,16 @@
+<!-- %Tag(FULL)%-->
+<launch>
+	<arg name="cfg_path" default="$(find object_localization)/config.yaml" />
+  	<arg name="activate_remaps" default="1"/>
+  	<param name="probando" value="/panTilt/image_raw" />
+
+    <!-- name to connect the service subscriber image --> 
+    <arg name="input_image" default="/panTilt/image_raw" />
+
+	<node pkg="object_localization" type="surfv" name="surfv" >
+		<!-- <remap from="/panTilt/image_raw" to="$(arg input_image)" /> -->
+		<remap if="$(arg activate_remaps)"  from="~image" to="$(arg input_image)"/>
+		<rosparam file="$(arg cfg_path)" command="load" />
+	</node>
+</launch>
+<!-- %EndTag(FULL)%-->

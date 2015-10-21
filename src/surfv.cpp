@@ -31,14 +31,19 @@ class SurfVision{
 	image_transport::Subscriber image_sub_;
 
 	std::string nameImg;
+	std::string prueba;
 
   public:
   	SurfVision(): it_(nh_){
-  		image_sub_ = it_.subscribe("sensor_msgs/Image", 1, &SurfVision::surfCallBack, this);
+  		//image_sub_ = it_.subscribe("sensor_msgs/Image", 1, &SurfVision::surfCallBack, this);
+		nh_.getParam("probando", prueba);
+  		image_sub_ = it_.subscribe(prueba, 1, &SurfVision::surfCallBack, this);
   	}
 
   	SurfVision(std::string name_img): it_(nh_), nameImg(name_img){
-  		image_sub_ = it_.subscribe("sensor_msgs/Image", 1, &SurfVision::surfCallBack, this);
+  		//image_sub_ = it_.subscribe("sensor_msgs/Image", 1, &SurfVision::surfCallBack, this);
+		nh_.getParam("probando", prueba);
+  		image_sub_ = it_.subscribe(prueba, 1, &SurfVision::surfCallBack, this);
   	}
 
 
