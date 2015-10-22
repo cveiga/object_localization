@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(surf_vision)
+project(object_localization)
 
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
@@ -32,5 +32,5 @@ target_link_libraries(surfv ${catkin_LIBRARIES} opencv_nonfree) #opencv3)
 add_executable(webCam src/webCam.cpp)
 target_link_libraries(webCam ${catkin_LIBRARIES})
 
-add_executable(carga_imagen src/carga_imagen.cpp)
-target_link_libraries(carga_imagen ${catkin_LIBRARIES})
+#add_executable(carga_imagen src/carga_imagen.cpp)
+#target_link_libraries(carga_imagen ${catkin_LIBRARIES})

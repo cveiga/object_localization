@@ -10,21 +10,11 @@ SurfLib::SurfLib(std::string nameObject){
 
 
 
-void SurfLib::setObject(const cv::Mat object){
-  img_object = object;
-}
+void SurfLib::setObject(const cv::Mat object) { img_object = object; }
+void SurfLib::setScene(const cv::Mat scene) { img_scene = scene; }
 
-
-
-void SurfLib::setScene(const cv::Mat scene){
-  img_scene = scene;
-}
-
-
-
-cv::Mat SurfLib::getScene() const{
-  return img_scene;
-}
+cv::Mat SurfLib::getScene() const { return img_scene; }
+std_msgs::Float32MultiArray SurfLib::getCorners() const { return corners; }
 
 
 //-- Points for Line1 = (o1, p1), points for Line2 = (o2, p2)
@@ -46,7 +36,7 @@ bool SurfLib::intersection(cv::Point2f o1, cv::Point2f p1, cv::Point2f o2, cv::P
 
 
 
-int SurfLib::surfROS()
+int SurfLib::surfROS()  //std::vector<cv::Point2f> &obj_corners)
 {  
   //cv::initModule_nonfree();
 
@@ -122,7 +112,7 @@ int SurfLib::surfROS()
   	perspectiveTransform( obj_corners, scene_corners, H);
 
   	//-- Draw lines between the corners (the mapped object in the scene - image_2 )
-  	line(img_scene,scene_corners[0], scene_corners[1], cv::Scalar(0, 255,0),4);
+    line(img_scene,scene_corners[0], scene_corners[1], cv::Scalar(0, 255,0),4);
   	line(img_scene,scene_corners[1], scene_corners[2], cv::Scalar(0, 255,0),4);
   	line(img_scene,scene_corners[2], scene_corners[3], cv::Scalar(0, 255,0),4);
   	line(img_scene,scene_corners[3], scene_corners[0], cv::Scalar(0, 255,0),4);
@@ -137,8 +127,17 @@ int SurfLib::surfROS()
 
       /*line(img_scene, scene_corners[0], scene_corners[2], cv::Scalar(255, 0, 0), 4);
       line(img_scene, scene_corners[1], scene_corners[3], cv::Scalar(255, 0, 0), 4);*/
+	
       if (intersection(scene_corners[0], scene_corners[2], scene_corners[1], scene_corners[3], centro))
         circle(img_scene, centro, 5, cv::Scalar(0, 0, 255), 4);
+
+      this->corners.data.clear();
+
+      for (int i = 0; i < 4; i++)
+      {
+        corners.data.push_back(scene_corners[i].x);
+        corners.data.push_back(scene_corners[i].y);
+      }	   
   }
 
   //double x = scene_corners[0] - scene_corners[1]

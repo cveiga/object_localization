@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>surf_vision</name>
+  <name>object_localization</name>
   <version>0.0.1</version>
   <description>The surf_vision package</description>
 
