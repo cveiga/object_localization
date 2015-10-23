@@ -23,16 +23,16 @@ class SurfVision{
 
   public:
   	SurfVision(): it_(nh_){
-  		image_sub_ = it_.subscribe("/panTilt/image_raw", 1, &SurfVision::surfCallBack, this);
-		//nh_.getParam("probando", topic_param_);
-  		//image_sub_ = it_.subscribe(topic_param_, 1, &SurfVision::surfCallBack, this);
+  		//image_sub_ = it_.subscribe("/panTilt/image_raw", 1, &SurfVision::surfCallBack, this);
+		nh_.getParam("probando", topic_param_);
+  		image_sub_ = it_.subscribe(topic_param_, 1, &SurfVision::surfCallBack, this);
   		corners_pub_ = nh_.advertise<std_msgs::Float32MultiArray>("surf/corners_object", 1);
   	}
 
   	SurfVision(std::string name_img): it_(nh_), nameImg_(name_img){
-  		image_sub_ = it_.subscribe("/panTilt/image_raw", 1, &SurfVision::surfCallBack, this);
-		//nh_.getParam("probando", topic_param_);
-  		//image_sub_ = it_.subscribe(topic_param_, 1, &SurfVision::surfCallBack, this);
+  		//image_sub_ = it_.subscribe("/panTilt/image_raw", 1, &SurfVision::surfCallBack, this);
+		nh_.getParam("probando", topic_param_);
+  		image_sub_ = it_.subscribe(topic_param_, 1, &SurfVision::surfCallBack, this);
   		corners_pub_ = nh_.advertise<std_msgs::Float32MultiArray >("surf/corners_object", 1);
   	}
 
