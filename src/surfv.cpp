@@ -53,13 +53,13 @@ class SurfVision{
 		_sl.setScene(imgScene);
 		int value = _sl.surfROS();
 
-		cv::imshow("WEBCAM", _sl.getScene());	//imgScene);
-		cv::waitKey(1);		//el argumento que recibe waitKey es un delay, necesita 1 para refresco
+		//cv::imshow("WEBCAM", _sl.getScene());	//imgScene);
+		//cv::waitKey(1);		//el argumento que recibe waitKey es un delay, necesita 1 para refresco
 
 		corners_pub_.publish(_sl.getCorners());
 	}
 
-	~SurfVision(){ cv::destroyWindow("WEBCAM");}
+	~SurfVision(){ /*cv::destroyWindow("WEBCAM");*/ }
 };
 
 
